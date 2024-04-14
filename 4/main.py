@@ -8,10 +8,8 @@ def part1() -> int:
 
     for chunk in CONTENT:
         fields = set(map(lambda x: x.split(':')[0], chunk.split()))
-        if REQUIRED_FIELDS.issubset(fields):
-            result += 1
-        elif FULL_REQUIRED_FIELDS.issubset(fields):
-            result += 1
+        if REQUIRED_FIELDS.issubset(fields): result += 1
+        elif FULL_REQUIRED_FIELDS.issubset(fields): result += 1
 
     return result
 
