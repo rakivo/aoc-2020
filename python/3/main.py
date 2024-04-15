@@ -21,5 +21,5 @@ def part2() -> int:
 
     return result
 
-print("Part 1:", part1((3, 1)))
-print("Part 2:", part2())
+print("Part 1:", part1((3, 1))) # 218
+print("Part 2:", part2()) # 3847183340

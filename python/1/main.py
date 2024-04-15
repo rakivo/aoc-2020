@@ -13,5 +13,5 @@ def part2() -> int:
                 if content[i] + content[j] + content[k] == 2020:
                     return content[i] * content[j] * content[k]
 
-print("Part 1:", part1())
-print("Part 2:", part2())
+print("Part 1:", part1()) # 982464
+print("Part 2:", part2()) # 162292410
