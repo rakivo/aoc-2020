@@ -51,23 +51,6 @@ usize part2(const vvs& content)
 
 // <===========================================================>
 
-void vvout(const vvs& vv)
-{
-    cout << "[";
-    for (usize i = 0; i < vv.size(); ++i)
-    {
-        cout << "[";
-        for (usize j = 0; j < vv[i].size(); ++j)
-        {
-            cout << vv[i][j];
-            if (j != vv[i].size() - 1) cout << ", ";
-        }
-        cout << "]";
-        if (i != vv.size() - 1) cout << ", ";
-    }
-    cout << "]" << endl;
-}
-
 const static vvs read_file(std::ifstream& f)
 {
     vvs result = {};
