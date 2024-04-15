@@ -14,7 +14,7 @@
 
 #define sc std::set<char>
 #define vs std::vector<std::string>
-#define ums std::unordered_map<char, usize>
+#define umcu std::unordered_map<char, usize>
 #define vvs std::vector<std::vector<std::string>>
 
 #define FILE_NAME "input.txt"
@@ -38,7 +38,7 @@ usize part2(const vvs& content)
     usize result = 0;
     for (const auto& group : content)
     {
-        ums map = {};
+        umcu map = {};
         for (const auto& person: group)
             for (const auto& c: person) map[c]++;
     
