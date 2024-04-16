@@ -16,6 +16,7 @@ using vi     = std::vector<Instruction>;
 
 const static vs split(String, String);
 static void print_instruction(Instruction instruction);
+const static void solve(int&, usize&, vi, const vi*, vb*, const usize*);
 
 enum class Kind
 {
@@ -42,39 +43,6 @@ struct Instruction
     bool visited;
 };   
 
-const static void solve(int& acc, usize& line, vi instructions, const vi *new_instructions, vb *visited, const usize *N)
-{
-    if (new_instructions != NULL && visited != NULL)
-    {
-        while (line < *N)
-        {
-            if ((*visited)[line]) break;
-            (*visited)[line] = true;
-            switch ((*new_instructions)[line].kind)
-            {
-            case Kind::ACC: acc  += instructions[line].value; line++; break;
-            case Kind::JMP: line += instructions[line].value; break;
-            case Kind::NOP: line++; break;
-            }
-        }
-    } else {
-        const usize N = instructions.size();
-        while (line < N)
-        {
-            if (instructions[line].visited) break;
-            
-            instructions[line].visited = true;
-            
-            switch (instructions[line].kind)
-            {
-            case Kind::ACC: acc  += instructions[line].value; line++; break;
-            case Kind::JMP: line += instructions[line].value; break;
-            case Kind::NOP: line++; break;
-            }
-        }        
-    }
-}
-
 static int part1(vi instructions)
 {
     int acc = 0;
@@ -95,10 +63,11 @@ static int part2(const vi& instructions)
         default: continue;
         }
 
+        const usize N = new_instructions.size();
+        
         int acc = 0;
         usize line = 0;
         vb visited(N, false);
-        const usize N = new_instructions.size();
 
         solve(acc, line, instructions, &new_instructions, &visited, &N);
         if (line == N) return acc;
@@ -149,6 +118,39 @@ int main(void)
     f.close();
 
     return 0;
+}
+
+const static void solve(int& acc, usize& line, vi instructions, const vi *new_instructions, vb *visited, const usize *N)
+{
+    if (new_instructions != NULL && visited != NULL)
+    {
+        while (line < *N)
+        {
+            if ((*visited)[line]) break;
+            (*visited)[line] = true;
+            switch ((*new_instructions)[line].kind)
+            {
+            case Kind::ACC: acc  += instructions[line].value; line++; break;
+            case Kind::JMP: line += instructions[line].value; break;
+            case Kind::NOP: line++; break;
+            }
+        }
+    } else {
+        const usize N = instructions.size();
+        while (line < N)
+        {
+            if (instructions[line].visited) break;
+            
+            instructions[line].visited = true;
+            
+            switch (instructions[line].kind)
+            {
+            case Kind::ACC: acc  += instructions[line].value; line++; break;
+            case Kind::JMP: line += instructions[line].value; break;
+            case Kind::NOP: line++; break;
+            }
+        }        
+    }
 }
 
 const static vs split(String s, String delimiter)
