@@ -15,7 +15,7 @@ using vs     = std::vector<std::string>;
 using vi     = std::vector<Instruction>;
 
 const static vs split(String, String);
-static void print_instruction(Instruction instruction);
+static void print_instruction(Instruction);
 const static void solve(int&, usize&, vi, const vi*, vb*, const usize*);
 
 enum class Kind
