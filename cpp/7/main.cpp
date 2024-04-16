@@ -17,8 +17,8 @@ using usize  = size_t;
 using Color  = std::string;
 using String = std::string;
 using vr     = std::vector<Rule>;
-using vc     = std::vector<Child>;
 using dc     = std::deque<Color>;
+using vc     = std::vector<Child>;
 using vs     = std::vector<std::string>;
 using ucb    = std::unordered_map<Color, bool>;
 using vvs    = std::vector<std::vector<std::string>>;
@@ -45,7 +45,7 @@ static usize part1(const Rules& rules, const Color& color)
 {
     usize result = 0;
 
-    for (const auto& rule : rules)
+    for (const auto& rule: rules)
         if (can_contain(rules, rule.first, color))
             result++;
 
@@ -55,7 +55,7 @@ static usize part1(const Rules& rules, const Color& color)
 static bool can_contain(const Rules& rules, const Color& outer_color, const Color& inner_color)
 {
     const auto& children = rules.at(outer_color);
-    for (const auto& child : children)
+    for (const auto& child: children)
         if (child.color == inner_color || can_contain(rules, child.color, inner_color))
             return true;
 
