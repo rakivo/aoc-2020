@@ -64,7 +64,7 @@ const static vvs read_file(std::ifstream& f)
             temp.clear();
         } else temp.emplace_back(line);
     }
-    if (!temp.empty()) result.push_back(temp);
+    if (!temp.empty()) result.emplace_back(temp);
 
     return result;
 }
