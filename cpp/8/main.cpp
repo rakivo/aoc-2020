@@ -136,8 +136,7 @@ const static void solve(int& acc, usize& line, vi instructions, const vi *new_in
             }
         }
     } else {
-        const usize N = instructions.size();
-        while (line < N)
+        while (line < instructions.size())
         {
             if (instructions[line].visited) break;
             
