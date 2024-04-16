@@ -28,15 +28,9 @@ std::ostream& operator<<(std::ostream& os, const Kind& kind)
 {
     switch (kind)
     {
-        case Kind::ACC:
-            os << "ACC";
-            break;
-        case Kind::JMP:
-            os << "JMP";
-            break;
-        case Kind::NOP:
-            os << "NOP";
-            break;
+        case Kind::ACC: os << "ACC"; break;
+        case Kind::JMP: os << "JMP"; break;
+        case Kind::NOP: os << "NOP"; break;
     }
     return os;
 }
@@ -60,18 +54,9 @@ static int part1(vi instructions)
 
         switch (instructions[line].kind)
         {
-        case Kind::ACC:
-            acc += instructions[line].value;            
-            line++;
-            break;
-
-        case Kind::JMP:
-            line += instructions[line].value;
-            break;
-
-        case Kind::NOP:
-            line++;
-            break;
+        case Kind::ACC: acc  += instructions[line].value; line++; break;
+        case Kind::JMP: line += instructions[line].value; break;
+        case Kind::NOP: line++; break;
         }
     }
 
@@ -103,18 +88,9 @@ static int part2(const vi& instructions)
 
             switch (new_instructions[line].kind)
             {
-            case Kind::ACC:
-                acc += instructions[line].value;            
-                line++;
-                break;
-                
-            case Kind::JMP:
-                line += instructions[line].value;
-                break;
-                
-            case Kind::NOP:
-                line++;
-                break;
+            case Kind::ACC: acc  += instructions[line].value; line++; break;
+            case Kind::JMP: line += instructions[line].value; break;
+            case Kind::NOP: line++; break;
             }
         }
 
