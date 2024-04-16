@@ -122,7 +122,7 @@ int main(void)
 
 const static void solve(int& acc, usize& line, vi instructions, const vi *new_instructions, vb *visited, const usize *N)
 {
-    if (new_instructions != NULL && visited != NULL)
+    if (N)
     {
         while (line < *N)
         {
