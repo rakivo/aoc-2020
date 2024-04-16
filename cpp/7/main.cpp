@@ -5,7 +5,6 @@
 #include <string>
 #include <vector>
 #include <fstream>
-#include <algorithm> 
 #include <unordered_map>
 
 #define FILE_NAME "input.txt"

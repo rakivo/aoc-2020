@@ -1,7 +1,5 @@
-#include <algorithm>
 #include <iostream>
 
-#include <stack>
 #include <vector>
 #include <fstream>
 
@@ -13,7 +11,6 @@ using usize  = size_t;
 using Color  = std::string;
 using String = std::string;
 using vb     = std::vector<bool>;
-using si     = std::stack<Instruction>;
 using vs     = std::vector<std::string>;
 using vi     = std::vector<Instruction>;
 
