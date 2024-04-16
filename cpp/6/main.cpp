@@ -36,7 +36,7 @@ usize part1(const vvs& content)
 usize part2(const vvs& content)
 {
     usize result = 0;
-    for (const auto& group : content)
+    for (const auto& group: content)
     {
         umcu map = {};
         for (const auto& person: group)
