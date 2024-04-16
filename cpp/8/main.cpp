@@ -48,7 +48,6 @@ struct Instruction
 {
     Kind kind;
     int value;
-    usize line;
     bool visited;
 };   
 
@@ -58,8 +57,7 @@ static int part1(vi instructions)
     usize line = 0;
     while (line < instructions.size())
     {
-        if (instructions[line].visited)
-            break;
+        if (instructions[line].visited) break;
 
         instructions[line].visited = true;
 
@@ -97,9 +95,10 @@ static int part2(const vi& instructions)
 
         int acc = 0;
         usize line = 0;
-        vb visited(new_instructions.size(), false);
+        const usize N = new_instructions.size();
+        vb visited(N, false);
 
-        while (line < new_instructions.size())
+        while (line < N)
         {
             if (visited[line]) break;
 
@@ -122,7 +121,7 @@ static int part2(const vi& instructions)
             }
         }
 
-        if (line == new_instructions.size()) return acc;
+        if (line == N) return acc;
     }
 
     return -1;
@@ -146,7 +145,6 @@ const static vi get_instructions(std::ifstream& f)
             Instruction {
                 .kind = kind,
                 .value = std::stoi(splitted[1]),
-                .line = uline++,
                 .visited = false
             });
     }
