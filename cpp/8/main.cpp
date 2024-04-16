@@ -42,24 +42,44 @@ struct Instruction
     bool visited;
 };   
 
+const static void solve(int& acc, usize& line, vi instructions, const vi *new_instructions, vb *visited, const usize *N)
+{
+    if (new_instructions != NULL && visited != NULL)
+    {
+        while (line < *N)
+        {
+            if ((*visited)[line]) break;
+            (*visited)[line] = true;
+            switch ((*new_instructions)[line].kind)
+            {
+            case Kind::ACC: acc  += instructions[line].value; line++; break;
+            case Kind::JMP: line += instructions[line].value; break;
+            case Kind::NOP: line++; break;
+            }
+        }
+    } else {
+        const usize N = instructions.size();
+        while (line < N)
+        {
+            if (instructions[line].visited) break;
+            
+            instructions[line].visited = true;
+            
+            switch (instructions[line].kind)
+            {
+            case Kind::ACC: acc  += instructions[line].value; line++; break;
+            case Kind::JMP: line += instructions[line].value; break;
+            case Kind::NOP: line++; break;
+            }
+        }        
+    }
+}
+
 static int part1(vi instructions)
 {
     int acc = 0;
     usize line = 0;
-    while (line < instructions.size())
-    {
-        if (instructions[line].visited) break;
-
-        instructions[line].visited = true;
-
-        switch (instructions[line].kind)
-        {
-        case Kind::ACC: acc  += instructions[line].value; line++; break;
-        case Kind::JMP: line += instructions[line].value; break;
-        case Kind::NOP: line++; break;
-        }
-    }
-
+    solve(acc, line, instructions, NULL, NULL, NULL);
     return acc;
 }
 
@@ -77,23 +97,10 @@ static int part2(const vi& instructions)
 
         int acc = 0;
         usize line = 0;
-        const usize N = new_instructions.size();
         vb visited(N, false);
+        const usize N = new_instructions.size();
 
-        while (line < N)
-        {
-            if (visited[line]) break;
-
-            visited[line] = true;
-
-            switch (new_instructions[line].kind)
-            {
-            case Kind::ACC: acc  += instructions[line].value; line++; break;
-            case Kind::JMP: line += instructions[line].value; break;
-            case Kind::NOP: line++; break;
-            }
-        }
-
+        solve(acc, line, instructions, &new_instructions, &visited, &N);
         if (line == N) return acc;
     }
 
